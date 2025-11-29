@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Нотариус Ольга Савчук</title>
+
+  <!-- TailwindCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS CSS (анимация при скролле) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // ИНИЦИАЛИЗАЦИЯ AOS
+      // once: false — анимация срабатывает каждый раз, когда блок появляется в зоне видимости
+      AOS.init({ duration: 800, once: false });
+
+      const adminPanel = document.getElementById('adminPanel');
+      if (adminPanel) adminPanel.classList.add('hidden-admin');
+    });
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; }
+
+    /* Фон главного блока — затемнённый офис */
+    .hero-bg {
+      background:
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)),
+        url('./img/office.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hidden-admin { display: none !important; }
+
+    #secretBtn {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      width: 25px;
+      height: 25px;
+      opacity: 0;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .delete-btn {
+      color: red;
+      cursor: pointer;
+      font-weight: bold;
+      visibility: hidden;
+    }
+
+    tr:hover .delete-btn { visibility: visible; }
+  </style>
+</head>
+<body class="text-gray-800">
+
+  <!-- ===== Шапка ===== -->
+  <header class="fixed top-0 left-0 w-full bg-white shadow z-50" data-aos="fade-down">
+    <nav class="container mx-auto flex items-center justify-between py-3 px-4 md:px-6">
+      <div class="flex items-center gap-2">
+        <h1 class="text-xl md:text-2xl font-bold text-amber-700">Ольга Савчук</h1>
+      </div>
+
+      <!-- Десктоп-меню -->
+      <ul class="hidden md:flex gap-6 font-medium">
+        <li><a href="#home" class="hover:text-amber-700">Главная</a></li>
+        <li><a href="#about" class="hover:text-amber-700">Обо мне</a></li>
+        <li><a href="#services" class="hover:text-amber-700">Услуги</a></li>
+        <li><a href="#prices" class="hover:text-amber-700">Цены</a></li>
+        <li><a href="#faq" class="hover:text-amber-700">Вопросы</a></li>
+        <li><a href="#contact" class="hover:text-amber-700">Контакты</a></li>
+      </ul>
+
+      <div class="flex items-center gap-2 md:gap-4">
+        <a href="#appointment" class="hidden sm:inline-block bg-amber-700 text-white px-3 md:px-4 py-2 rounded-lg hover:bg-amber-800 transition text-sm md:text-base">
+          Записаться
+        </a>
+        <!-- Бургер для мобилки -->
+        <button id="menuToggle" class="md:hidden border border-amber-700 text-amber-700 px-2 py-1 rounded-lg text-lg">
+          ☰
+        </button>
+      </div>
+    </nav>
+
+    <!-- Мобильное меню -->
+    <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-gray-200">
+      <ul class="flex flex-col gap-2 font-medium px-4 pb-4 pt-2">
+        <li><a href="#home" class="block py-1 hover:text-amber-700 mob-link">Главная</a></li>
+        <li><a href="#about" class="block py-1 hover:text-amber-700 mob-link">Обо мне</a></li>
+        <li><a href="#services" class="block py-1 hover:text-amber-700 mob-link">Услуги</a></li>
+        <li><a href="#prices" class="block py-1 hover:text-amber-700 mob-link">Цены</a></li>
+        <li><a href="#faq" class="block py-1 hover:text-amber-700 mob-link">Вопросы</a></li>
+        <li><a href="#contact" class="block py-1 hover:text-amber-700 mob-link">Контакты</a></li>
+        <li><a href="#appointment" class="block py-1 text-amber-700 font-semibold mob-link">Записаться на приём</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ===== Главная ===== -->
+    <section
+    id="home"
+    class="hero-bg min-h-[90vh] flex flex-col justify-center items-center text-white text-center px-4 pt-32 md:pt-28"
+  >
+    <!-- Заголовок: слева направо -->
+    <h2
+      class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 tracking-tight"
+      data-aos="fade-right"
+      data-aos-delay="0"
+      data-aos-duration="800"
+    >
+      Нотариус Ольга Савчук
+    </h2>
+
+    <!-- Описание: справа налево, через 0.5 сек -->
+    <p
+      class="text-lg md:text-2xl mb-8 max-w-2xl"
+      data-aos="fade-left"
+      data-aos-delay="500"
+      data-aos-duration="800"
+    >
+      Надёжность и конфиденциальность — моя работа. Оперативное оформление документов,
+      юридическая точность и внимательное отношение к каждому клиенту.
+    </p>
+
+    <!-- Кнопки: снизу вверх, по очереди каждые 0.5 сек -->
+    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+      <a
+        href="#appointment"
+        class="bg-amber-700 px-6 py-3 rounded-lg hover:bg-amber-800 transition text-sm md:text-base font-semibold"
+        data-aos="fade-up"
+        data-aos-delay="1000"
+        data-aos-duration="800"
+      >
+        Записаться на приём
+      </a>
+
+      <a
+        href="tel:+380XXXXXXXXX"
+        class="border border-white px-6 py-3 rounded-lg hover:bg-white hover:text-black transition text-sm md:text-base font-semibold"
+        data-aos="fade-up"
+        data-aos-delay="1500"
+        data-aos-duration="800"
+      >
+        Позвонить
+      </a>
+
+      <a
+        href="#contact"
+        class="bg-white text-amber-700 px-6 py-3 rounded-lg hover:bg-amber-700 hover:text-white transition text-sm md:text-base font-semibold"
+        data-aos="fade-up"
+        data-aos-delay="2000"
+        data-aos-duration="800"
+      >
+        Заказать консультацию
+      </a>
+    </div>
+  </section>
+
+
+  <!-- ===== Обо мне ===== -->
+  <section id="about" class="py-16 md:py-20 bg-gray-50">
+    <div class="container mx-auto grid md:grid-cols-2 gap-10 items-center px-4 md:px-6">
+
+      <!-- Фото -->
+      <div
+        class="flex justify-center md:justify-start"
+        data-aos="fade-right"
+        data-aos-duration="800"
+      >
+        <img
+          src="./img/notarius.jpg"
+          alt="Нотариус Ольга Савчук"
+          class="w-full max-w-xl rounded-2xl shadow-lg object-cover"
+          loading="lazy"
+        >
+      </div>
+
+      <!-- Текст -->
+      <div
+        data-aos="fade-left"
+        data-aos-delay="200"
+        data-aos-duration="800"
+      >
+        <h3 class="text-2xl md:text-3xl font-semibold mb-4 text-amber-700">
+          Обо мне
+        </h3>
+        <p class="leading-relaxed text-sm md:text-base">
+          Я — частный нотариус с более чем 15-летним опытом работы. Моя задача — защищать ваши
+          права и интересы, обеспечивая юридическую безопасность, точность и конфиденциальность
+          при оформлении документов. Индивидуальный подход, внимательное отношение и строгое
+          соблюдение законодательства — основы моей работы.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== Услуги ===== -->
+  <section id="services" class="py-16 md:py-20">
+    <div class="container mx-auto px-4 md:px-6 text-center">
+      <h3
+        class="text-2xl md:text-3xl font-semibold mb-10 text-amber-700"
+        data-aos="zoom-in"
+      >
+        Услуги
+      </h3>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <details
+          class="p-5 md:p-6 bg-white shadow rounded-xl text-left"
+          data-aos="fade-up"
+          data-aos-delay="0"
+        >
+          <summary class="cursor-pointer font-semibold mb-2">
+            Свидетельствование сделок
+          </summary>
+          <p class="text-sm text-gray-700">Купля-продажа, дарение, завещание.</p>
+        </details>
+
+        <details
+          class="p-5 md:p-6 bg-white shadow rounded-xl text-left"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          <summary class="cursor-pointer font-semibold mb-2">
+            Оформление доверенностей
+          </summary>
+          <p class="text-sm text-gray-700">Общая, специальная, разовая доверенность.</p>
+        </details>
+
+        <details
+          class="p-5 md:p-6 bg-white shadow rounded-xl text-left"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <summary class="cursor-pointer font-semibold mb-2">
+            Наследственные дела
+          </summary>
+          <p class="text-sm text-gray-700">Оформление наследства.</p>
+        </details>
+
+        <details
+          class="p-5 md:p-6 bg-white shadow rounded-xl text-left"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          <summary class="cursor-pointer font-semibold mb-2">
+            Заверение копий и переводов
+          </summary>
+          <p class="text-sm text-gray-700">Заверение документов и подписей.</p>
+        </details>
+
+        <details
+          class="p-5 md:p-6 bg-white shadow rounded-xl text-left"
+          data-aos="fade-up"
+          data-aos-delay="400"
+        >
+          <summary class="cursor-pointer font-semibold mb-2">
+            Брачные договоры
+          </summary>
+          <p class="text-sm text-gray-700">Подготовка и удостоверение брачных соглашений.</p>
+        </details>
+
+        <details
+          class="p-5 md:p-6 bg-white shadow rounded-xl text-left"
+          data-aos="fade-up"
+          data-aos-delay="500"
+        >
+          <summary class="cursor-pointer font-semibold mb-2">
+            Регистрация бизнеса
+          </summary>
+          <p class="text-sm text-gray-700">Регистрация юрлиц и ФОП.</p>
+        </details>
+
+        <details
+          class="p-5 md:p-6 bg-white shadow rounded-xl text-left sm:col-span-2 lg:col-span-3"
+          data-aos="fade-up"
+          data-aos-delay="600"
+        >
+          <summary class="cursor-pointer font-semibold mb-2">
+            Консультации
+          </summary>
+          <p class="text-sm text-gray-700">По всем нотариальным и смежным юридическим вопросам.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Цены ===== -->
+  <section id="prices" class="py-16 md:py-20 bg-gray-50 text-center" data-aos="flip-up">
+    <div class="container mx-auto px-4 md:px-6">
+      <h3 class="text-2xl md:text-3xl font-semibold mb-8 md:mb-10 text-amber-700">Цены</h3>
+      <div class="w-full md:w-2/3 mx-auto bg-white shadow rounded-xl overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm md:text-base">
+            <tr class="bg-amber-700 text-white">
+              <th class="p-3 text-left">Услуга</th>
+              <th class="p-3 text-left">Цена</th>
+            </tr>
+            <tr class="border-t">
+              <td class="p-3 text-left">Оформление доверенности</td>
+              <td class="p-3 text-left">от 500 грн</td>
+            </tr>
+            <tr class="border-t">
+              <td class="p-3 text-left">Свидетельствование сделки</td>
+              <td class="p-3 text-left">по запросу</td>
+            </tr>
+            <tr class="border-t">
+              <td class="p-3 text-left">Наследственные дела</td>
+              <td class="p-3 text-left">по запросу</td>
+            </tr>
+            <tr class="border-t">
+              <td class="p-3 text-left">Регистрация бизнеса</td>
+              <td class="p-3 text-left">по запросу</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <p class="mt-4 text-gray-600 text-xs md:text-sm">
+        Стоимость зависит от сложности и объёма услуги. Точный расчёт — после консультации.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== Частые вопросы ===== -->
+  <section id="faq" class="py-16 md:py-20">
+    <div class="container mx-auto px-4 md:px-6">
+
+      <h3 class="text-2xl md:text-3xl font-semibold mb-8 md:mb-10 text-center text-amber-700"
+          data-aos="zoom-in">
+        Частые вопросы
+      </h3>
+
+      <div class="space-y-4 md:space-y-6 max-w-2xl mx-auto">
+
+        <!-- 1-й вопрос -->
+        <details class="bg-white p-4 md:p-5 rounded-xl shadow"
+                 data-aos="fade-right"
+                 data-aos-delay="0"
+                 data-aos-duration="800">
+          <summary class="cursor-pointer font-semibold mb-1">Какие документы нужны для доверенности?</summary>
+          <p class="text-sm text-gray-700">
+            Паспорт, ИНН, документ, подтверждающий право собственности.
+          </p>
+        </details>
+
+        <!-- 2-й вопрос -->
+        <details class="bg-white p-4 md:p-5 rounded-xl shadow"
+                 data-aos="fade-right"
+                 data-aos-delay="1000"
+                 data-aos-duration="800">
+          <summary class="cursor-pointer font-semibold mb-1">Можно ли оформить документы дистанционно?</summary>
+          <p class="text-sm text-gray-700">
+            Часть процедур можно подготовить дистанционно. Окончательное удостоверение — при личном визите.
+          </p>
+        </details>
+
+        <!-- 3-й вопрос -->
+        <details class="bg-white p-4 md:p-5 rounded-xl shadow"
+                 data-aos="fade-right"
+                 data-aos-delay="2000"
+                 data-aos-duration="800">
+          <summary class="cursor-pointer font-semibold mb-1">Сколько времени занимает оформление завещания?</summary>
+          <p class="text-sm text-gray-700">
+            Обычно 20–30 минут при наличии всех необходимых данных и документов.
+          </p>
+        </details>
+
+        <!-- 4-й вопрос -->
+        <details class="bg-white p-4 md:p-5 rounded-xl shadow"
+                 data-aos="fade-right"
+                 data-aos-delay="3000"
+                 data-aos-duration="800">
+          <summary class="cursor-pointer font-semibold mb-1">Нужно ли присутствие обеих сторон?</summary>
+          <p class="text-sm text-gray-700">
+            Да, для двусторонних сделок — обязательно.
+          </p>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Онлайн-запись ===== -->
+  <section id="appointment" class="py-16 md:py-20 bg-white" data-aos="fade-up">
+    <div class="container mx-auto text-center px-4 md:px-6">
+      <h3 class="text-2xl md:text-3xl font-semibold mb-8 md:mb-10 text-amber-700"
+          data-aos="zoom-in">
+        Онлайн-запись
+      </h3>
+
+      <form
+        id="form"
+        class="grid md:grid-cols-2 gap-4 bg-amber-50 shadow-lg p-6 md:p-8 rounded-xl w-full md:w-2/3 mx-auto"
+        data-aos="fade-up"
+        data-aos-delay="150"
+      >
+        <input name="name" placeholder="ФИО" class="border p-3 rounded text-sm md:text-base" required />
+        <select name="service" class="border p-3 rounded text-sm md:text-base" required>
+          <option value="">Выберите услугу</option>
+          <option>Свидетельствование сделок</option>
+          <option>Оформление доверенностей</option>
+          <option>Наследственные дела</option>
+          <option>Заверение копий и переводов</option>
+          <option>Брачные договоры</option>
+          <option>Регистрация бизнеса</option>
+          <option>Консультации</option>
+        </select>
+        <input type="date" name="date" class="border p-3 rounded text-sm md:text-base" required />
+        <input type="time" name="time" class="border p-3 rounded text-sm md:text-base" required />
+        <input type="tel" name="phone" placeholder="Телефон" class="border p-3 rounded text-sm md:text-base" required />
+        <select name="consult" class="border p-3 rounded text-sm md:text-base">
+          <option>Очная консультация</option>
+          <option>Онлайн (Zoom/Telegram)</option>
+        </select>
+        <button
+          type="submit"
+          class="md:col-span-2 bg-amber-700 text-white py-3 rounded-lg hover:bg-amber-800 transition text-sm md:text-base"
+        >
+          Отправить заявку
+        </button>
+      </form>
+      <p id="msg" class="mt-4 text-green-700 hidden text-sm md:text-base">✅ Ваша заявка сохранена!</p>
+    </div>
+  </section>
+
+  <!-- ===== Контакты ===== -->
+  <section id="contact" class="py-16 md:py-20 bg-gray-100 text-center" data-aos="fade-right">
+    <div class="container mx-auto px-4 md:px-6">
+      <h3 class="text-2xl md:text-3xl font-semibold mb-6 text-amber-700">Контакты</h3>
+      <p class="text-sm md:text-base">Адрес: г. Киев, ул. Правды, 10</p>
+      <p class="text-sm md:text-base">
+        Телефон:
+        <a href="tel:+380XXXXXXXXX" class="text-amber-700 font-semibold">
+          +380 ХХХ ХХХ ХХХХ
+        </a>
+      </p>
+      <p class="text-sm md:text-base">
+        E-mail:
+        <a href="mailto:info@notary-savchuk.ua" class="text-amber-700">
+          info@notary-savchuk.ua
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <footer class="bg-amber-700 text-white py-6 text-center text-sm md:text-base">
+    <p>© 2025 Частный нотариус Ольга Савчук</p>
+  </footer>
+
+  <div id="secretBtn"></div>
+
+  <!-- ===== Админка ===== -->
+  <section id="adminPanel" class="hidden-admin fixed inset-0 bg-gray-900 bg-opacity-90 flex justify-center items-center text-white">
+    <div class="bg-white text-gray-900 p-6 md:p-8 rounded-xl shadow-xl w-11/12 md:w-2/3 relative">
+      <button id="closePanel" class="absolute top-3 right-3 text-gray-500 hover:text-red-600 text-2xl">&times;</button>
+      <h2 class="text-2xl md:text-3xl mb-4 text-center font-semibold text-amber-700">Панель администратора</h2>
+      <div id="authBlock" class="text-center">
+        <p class="mb-4 text-sm md:text-base">Введите пароль администратора:</p>
+        <input type="password" id="adminPass" placeholder="Пароль" class="border p-2 rounded text-sm md:text-base" />
+        <button id="loginBtn" class="bg-amber-700 text-white px-4 py-2 rounded ml-2 hover:bg-amber-800 text-sm md:text-base">
+          Войти
+        </button>
+      </div>
+      <div id="adminContent" class="hidden mt-6 overflow-auto max-h-[60vh] text-xs md:text-sm"></div>
+      <div id="adminActions" class="hidden mt-4 flex justify-end gap-2">
+        <button id="selectAll" class="bg-gray-300 text-gray-800 px-3 md:px-4 py-2 rounded hover:bg-gray-400 text-xs md:text-sm">
+          Выделить все</button>
+        <button id="deleteSelected" class="bg-red-600 text-white px-3 md:px-4 py-2 rounded hover:bg-red-700 text-xs md:text-sm">
+          Удалить выбранные</button>
+      </div>
+      <button id="closeAdmin" class="hidden bg-red-600 text-white px-4 py-2 rounded mt-6 hover:bg-red-700 text-sm md:text-base">
+        Закрыть
+      </button>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById('form');
+    const msg = document.getElementById('msg');
+    const adminPanel = document.getElementById('adminPanel');
+    const loginBtn = document.getElementById('loginBtn');
+    const adminPass = document.getElementById('adminPass');
+    const adminContent = document.getElementById('adminContent');
+    const closeAdmin = document.getElementById('closeAdmin');
+    const closePanel = document.getElementById('closePanel');
+    const secretBtn = document.getElementById('secretBtn');
+    const adminActions = document.getElementById('adminActions');
+    const selectAllBtn = document.getElementById('selectAll');
+    const deleteSelectedBtn = document.getElementById('deleteSelected');
+
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    // Мобильное меню
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      document.querySelectorAll('.mob-link').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+    }
+
+    // Форма записи
+    if (form) {
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(form));
+        const saved = JSON.parse(localStorage.getItem('appointments') || '[]');
+        saved.push(data);
+        localStorage.setItem('appointments', JSON.stringify(saved));
+        form.reset();
+        if (msg) {
+          msg.classList.remove('hidden');
+          setTimeout(() => msg.classList.add('hidden'), 3000);
+        }
+      });
+    }
+
+    // Секретная кнопка для входа в админку
+    if (secretBtn && adminPanel) {
+      secretBtn.addEventListener('click', () => adminPanel.classList.remove('hidden-admin'));
+    }
+
+    function closeAdminPanel() {
+      if (!adminPanel) return;
+      adminPanel.classList.add('hidden-admin');
+      if (adminPass) adminPass.value = '';
+      const authBlock = document.getElementById('authBlock');
+      if (authBlock) authBlock.classList.remove('hidden');
+      if (adminContent) adminContent.classList.add('hidden');
+      if (adminActions) adminActions.classList.add('hidden');
+      if (closeAdmin) closeAdmin.classList.add('hidden');
+    }
+
+    if (closePanel) closePanel.addEventListener('click', closeAdminPanel);
+    if (closeAdmin) closeAdmin.addEventListener('click', closeAdminPanel);
+
+    // Логин в админку
+    if (loginBtn) {
+      loginBtn.addEventListener('click', () => {
+        if (adminPass && adminPass.value === 'savchukadmin') {
+          const authBlock = document.getElementById('authBlock');
+          if (authBlock) authBlock.classList.add('hidden');
+          if (adminContent) adminContent.classList.remove('hidden');
+          if (adminActions) adminActions.classList.remove('hidden');
+          if (closeAdmin) closeAdmin.classList.remove('hidden');
+          renderAppointments();
+        } else {
+          alert('❌ Неверный пароль!');
+        }
+      });
+    }
+
+    // Рендер заявок
+    function renderAppointments() {
+      const data = JSON.parse(localStorage.getItem('appointments') || '[]');
+      if (!adminContent) return;
+
+      if (data.length === 0) {
+        adminContent.innerHTML = '<p class="text-center">Пока нет заявок.</p>';
+        return;
+      }
+      let html = `
+        <div class="overflow-x-auto">
+          <table class='w-full border text-xs md:text-sm'>
+            <tr class='bg-amber-700 text-white'>
+              <th class='p-2'><input type='checkbox' id='masterCheck'></th>
+              <th class='p-2 text-left'>ФИО</th>
+              <th class='p-2 text-left'>Услуга</th>
+              <th class='p-2 text-left'>Дата</th>
+              <th class='p-2 text-left'>Время</th>
+              <th class='p-2 text-left'>Телефон</th>
+              <th class='p-2 text-left'>Тип</th>
+              <th class='p-2 text-center'>Удалить</th>
+            </tr>`;
+      data.forEach((d, i) => {
+        html += `
+          <tr>
+            <td class='border p-2 text-center'>
+              <input type='checkbox' class='rowCheck' data-index='${i}'>
+            </td>
+            <td class='border p-2'>${d.name}</td>
+            <td class='border p-2'>${d.service}</td>
+            <td class='border p-2'>${d.date}</td>
+            <td class='border p-2'>${d.time}</td>
+            <td class='border p-2'>${d.phone}</td>
+            <td class='border p-2'>${d.consult}</td>
+            <td class='border p-2 text-center'>
+              <span class='delete-btn' data-index='${i}'>&#128465;</span>
+            </td>
+          </tr>`;
+      });
+      html += `</table></div>`;
+      adminContent.innerHTML = html;
+
+      document.querySelectorAll('.delete-btn').forEach(btn =>
+        btn.addEventListener('click', e => deleteAppointment(e.target.dataset.index))
+      );
+
+      const masterCheck = document.getElementById('masterCheck');
+      if (masterCheck) {
+        masterCheck.addEventListener('change', e => {
+          document.querySelectorAll('.rowCheck').forEach(chk => {
+            chk.checked = e.target.checked;
+          });
+        });
+      }
+    }
+
+    function deleteAppointment(index) {
+      const data = JSON.parse(localStorage.getItem('appointments') || '[]');
+      data.splice(index, 1);
+      localStorage.setItem('appointments', JSON.stringify(data));
+      renderAppointments();
+    }
+
+    if (selectAllBtn) {
+      selectAllBtn.addEventListener('click', () => {
+        document.querySelectorAll('.rowCheck').forEach(chk => (chk.checked = true));
+      });
+    }
+
+    if (deleteSelectedBtn) {
+      deleteSelectedBtn.addEventListener('click', () => {
+        const data = JSON.parse(localStorage.getItem('appointments') || '[]');
+        const remaining = data.filter((_, i) => {
+          const chk = document.querySelector(`.rowCheck[data-index='${i}']`);
+          return !chk || !chk.checked;
+        });
+        localStorage.setItem('appointments', JSON.stringify(remaining));
+        renderAppointments();
+      });
+    }
+  </script>
+
+</body>
+</html>
